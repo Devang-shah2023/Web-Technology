@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        a= parseInt(prompt("Enter a number from 0 to 999:"))
+
+        if(a<0 || a>999){
+            document.write("Out of Range");
+        }
+        if(isNaN(a)){
+            document.write("Not a number")
+        }
+        teen=["Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
+        ten=["Ten", "Twenty", "Thirty", "Fourty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+        one=["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
+
+        s="";
+
+        if(a==0){
+            document.write("Zero")
+        }
+        if(a>=100){
+            s+= one[Math.floor(parseInt(a/100))]+"Hundred";
+            a= parseInt(a%100);
+        }
+        if(a>=20){
+            s+=ten[Math.floor(parseInt(a/10))]+"";
+            a= parseInt(a%10);
+        }
+        if(a>10){
+            s+= teen[Math.floor(parseInt(a%10))]+"";
+            a=0;
+        }
+        if(a==10){
+            s+="Ten";
+            a=0;
+        }
+        if(a>0){
+            s+=one[parseInt(a)]+"";
+        }
+        document.write("Word Format:"+s)
+
+
+    </script>
+</body>
+</html>

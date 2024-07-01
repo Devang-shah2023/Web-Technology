@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+let numberOfElements = parseInt(prompt("Enter the number of elements in the array:"));
+
+let numbers = [];
+
+for (let i = 0; i < numberOfElements; i++) {
+    let number = parseFloat(prompt(`Enter element:`));
+    numbers.push(number);
+}
+
+let maxNumber = numbers[0]; 
+for (let i = 1; i < numbers.length; i++) {
+    if (numbers[i] > maxNumber) {
+        maxNumber = numbers[i];
+    }
+}
+
+document.write('The maximum number in an array:'+maxNumber);
+
+
+
+    </script>
+</body>
+</html>
