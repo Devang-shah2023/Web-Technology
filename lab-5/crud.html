@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+	<title>CRUD</title>
 	<style type="text/css">
 		*{
 			box-sizing: border-box;
@@ -86,6 +86,7 @@
 			idToEdit = id;
 			document.getElementById('btn').innerHTML = "Edit"
 			document.getElementById('txtName').value = students[id].name
+			document.getElementById('txtRollNo').value = students[id].rollNo
   
 		}
 
@@ -117,6 +118,12 @@
 				}
 				else{
 					students.push(tempObj);	
+
+
+
+
+
+				
 				}
 				
 				tempStudent.value = ""
@@ -128,6 +135,11 @@
 			
 				students.splice(id,1);	
 				displayStudent();
+			
+		}
+
+		function edit(n){
+			document.getElementById('add').value('Edit');
 			
 		}
 	</script>

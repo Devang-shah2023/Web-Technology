@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Data Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .form-box {
+            width: 300px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-box input[type="text"],
+        .form-box input[type="password"],
+        .form-box input[type="number"],
+        .form-box input[type="email"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .form-box input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-box">
+        <h2>User Data Validation</h2>
+        <form id="userDataForm" onsubmit="return validateForm()">
+            <input type="text" id="username" name="username" placeholder="Username (min. 8 characters)" required>
+            <br>
+            <input type="password" id="password" name="password" placeholder="Password (8-12 characters, at least 1 digit and 1 special character)" required>
+            <br>
+            <input type="password" id="repeatPassword" name="repeatPassword" placeholder="Repeat Password" required>
+            <br>
+            <input type="number" id="age" name="age" placeholder="Age (must be greater than 18)" required>
+            <br>
+            <input type="text" id="enrollment" name="enrollment" placeholder="Enrollment (11 digits)" required>
+            <br>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+        <div id="errorMessages"></div>
+    </div>
+
+    <script>
+        function validateForm() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var repeatPassword = document.getElementById('repeatPassword').value;
+            var age = parseInt(document.getElementById('age').value);
+            var enrollment = document.getElementById('enrollment').value;
+            var email = document.getElementById('email').value;
+            var errors = [];
+
+            // Validate username
+            if (username.length < 8) {
+                errors.push("Username must be at least 8 characters long.");
+            }
+
+            // Validate password
+            if (!password.match(/^(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,12}$/)) {
+                errors.push("Password must be 8-12 characters long and contain at least 1 digit and 1 special character.");
+            }
+
+            // Validate repeat password
+            if (password !== repeatPassword) {
+                errors.push("Passwords do not match.");
+            }
+
+            // Validate age
+            if (age <= 18 || isNaN(age)) {
+                errors.push("Age must be greater than 18.");
+            }
+
+            // Validate enrollment
+            if (!enrollment.match(/^\d{11}$/)) {
+                errors.push("Enrollment must be 11 digits long.");
+            }
+
+            // Validate email
+            if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                errors.push("Invalid email address.");
+            }
+
+            // Display errors if any
+            if (errors.length > 0) {
+                displayErrors(errors);
+                return false;
+            }
+
+            // If all validations pass
+            alert("Form submitted successfully!");
+            return true;
+        }
+
+        function displayErrors(errors) {
+            var errorMessages = document.getElementById('errorMessages');
+            errorMessages.innerHTML = '';
+            errors.forEach(function(error) {
+                var errorElement = document.createElement('p');
+                errorElement.classList.add('error-message');
+                errorElement.textContent = error;
+                errorMessages.appendChild(errorElement);
+            });
+        }
+    </script>
+</body>
+</html>

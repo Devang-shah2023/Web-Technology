@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+</head>
+<body>
+    <h1>Simple Calculator</h1>
+    <button onclick="simpleCalculator()">Open Calculator</button>
+
+    <script>
+        function simpleCalculator() {
+            var num1 = parseFloat(prompt("Enter the first number:"));
+            var operator = prompt("Enter an operator (+, -, *, /):");
+            var num2 = parseFloat(prompt("Enter the second number:"));
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.write("Invalid input. Please enter valid numbers.");
+                return;
+            }
+
+            var result;
+            if (operator === '+') {
+                result = num1 + num2;
+            } else if (operator === '-') {
+                result = num1 - num2;
+            } else if (operator === '*') {
+                result = num1 * num2;
+            } else if (operator === '/') {
+                if (num2 === 0) {
+                    document.write("Division by zero is not allowed.");
+                    return;
+                }
+                result = num1 / num2;
+            } else {
+                document.write("Invalid operator. Please enter a valid operator (+, -, *, /).");
+                return;
+            }
+
+            document.write("The result is: " + result);
+        }
+    </script>
+</body>
+</html>
